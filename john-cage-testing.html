@@ -6,85 +6,31 @@
 	<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		.header {
-			width: 100%;
-			height: 40px;
-			background-color: #cad9ff;
-			padding: 12px 20px 8px;
-			font-family: Calibri;
-			font-size: 30px;
-			display: block;
-			white-space: nowrap
-		}
-		
-		.backButton {
-			display: inline;
-			font-family: comic sans ms;
-			margin-right: 20px;
-			font-size: 20px;
-			border-radius: 5px;
-			outline: none
-		}
-		form {
-			margin: 10px;
-			display: block;
-			padding: 10px;
-			border: 2px solid black;
-			border-radius: 10px
-		}
-		input {
-			display: block;
-			padding: 5px;
-			border-radius: 5px;
-			border: 2px solid gray;
-			font-size: 16px
-		}
-		label {
-			font-weight: bold;
-			font-family: arial
-		}
-		.formbutton {
-			display: inline;
-			margin-right: 5px
-		}
-		.searchBox {
-			margin: 10px; 
-			width: 50%;
-			min-width: 200px;
-			display: inline;
-		}
-		#result-container {
-			margin: auto;
-			width: 80%;
-			border-top: 2px solid black;
-			background-color: #cfe4ff;
-			text-align: center;
-			padding: 10px
-		}
-		audio {
-			margin: 10px 0px;
-			margin: auto;
-			display: block;
-			outline: none
-		}
-	</style>
+	
+	<link rel="stylesheet" href="john-cage-testing.css">
 </head>
 
 <body style="margin: auto">
-	<div id="root" />
+	<div id="root" style="text-align:center" />
 
 <script type="text/babel">
 	const root = document.getElementById("root");
 	const apt = "apt";
 	const mylib = "mylib";
+	const dash = "dash";
 	
 	function Header(props) {
 		return (
 			<div class="header">
-				{/* "&lt;-" = "<-" */}
-				<button class="backButton">&lt;-</button> 
-				{props.text}
+				{/* &lt;- = <- */}
+				<table>
+				<tr>
+					<td style={{borderRight:"2px solid black",paddingRight:"15px"}}>
+						<button class="backButton">&lt;-</button></td>
+					<td style={{paddingLeft:"15px"}}>
+						{props.text}</td>
+				</tr>
+				</table>
 			</div>
 		);
 	}
@@ -159,17 +105,75 @@
 		}
 	}
 	
+	function AccPanel(props) {
+		return (
+			<div id="acc-panel">
+				<h1 style={{display:"inline",textDecoration:"underline"}}>Profile</h1>
+				<div class="acc-panel-elem">
+					<h4 style={{display:"inline"}}>Name: </h4>
+					<p style={{display:"inline"}}>{props.account.name}</p>
+				</div>
+				<div class="acc-panel-elem">
+					<h4 style={{display:"inline"}}>Phone: </h4>
+					<p style={{display:"inline"}}>{props.account.phone}</p>
+				</div>
+				<div class="acc-panel-elem">
+					<h4 style={{display:"inline"}}>Email: </h4>
+					<p style={{display:"inline"}}>{props.account.email}</p>
+				</div>
+				<div class="acc-panel-elem">
+					<h4 style={{display:"inline"}}>Organization: </h4>
+					<p style={{display:"inline"}}>{props.account.org}</p>
+				</div>
+			</div>
+		);
+	}
+	
+	function ApptPanel(props) {
+		return (
+			
+		);
+	}
+	
+	class Dashboard extends React.Component {
+		constructor(p) {
+			super(p);
+			document.title = "[DEV]User Dashboard";
+			this.dummy = {
+				name: "John Doe",
+				email: "johndoe@gmail.com",
+				phone: "123-456-7890",
+				org: "UCF"
+			};
+		}
+		
+		render() {
+			return(<div>
+				<Header text="Dashboard" />
+				<div style={{display:"inline-block",width:"70%",border:"2px solid red"}}>
+					<AccPanel account={this.dummy} />
+				</div>
+			</div>);
+		}
+		
+	}
+	
 	// use this function in the browser console to load each page
+	// Appointment Creation - apt
+	// Music Library - mylib
+	// Dashboard - dash
 	function load(str){
 		if(str == "apt")
 			ReactDOM.render(<ApptCreate />, root);
 		else if(str == "mylib")
-			ReactDOM.render(<MusicLib />, root)
+			ReactDOM.render(<MusicLib />, root);
+		else if(str == "dash")
+			ReactDOM.render(<Dashboard />, root);
 		else
 			console.log("Not a recognized command");
 	}
 	
-	ReactDOM.render(<ApptCreate />, root);
+	load(dash);
 	
 </script>
 </body>
