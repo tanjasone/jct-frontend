@@ -21,7 +21,7 @@
 	
 	function Header(props) {
 		return (
-			<div class="header">
+			<header>
 				{/* &lt;- = <- */}
 				<table>
 				<tr>
@@ -31,30 +31,16 @@
 						{props.text}</td>
 				</tr>
 				</table>
-			</div>
-		);
-	}
-	function Search() {
-		return (
-			<div style={{textAlign:"center",whiteSpace:"nowrap"}}>
-				<input name="search" class="searchBox" />
-				<button style={{height:"33px"}}>Search</button>
-			</div>
+			</header>
 		);
 	}
 	
-	function MusicEntry(props) {
-		return (
-			<div>
-			
-			</div>
-		)
-	}
+	//********* Appointment Creation **********
 	
 	class ApptCreate extends React.Component {
 		constructor(p) {
 			super(p);
-			document.title = "[DEV]Appointment Creation"
+			document.title = "[DEV]Appointment Creation - John Cage Tribute";
 		}
 		
 		render() {
@@ -82,10 +68,30 @@
 		}
 	}
 	
+	//********* Music Library **********
+
+	function MusicEntry(props) {
+		return (
+			<div>
+			
+			</div>
+		)
+	}
+	
+
+	function Search() {
+		return (
+			<div style={{textAlign:"center",whiteSpace:"nowrap"}}>
+				<input name="search" class="searchBox" />
+				<button style={{height:"33px"}}>Search</button>
+			</div>
+		);
+	}
+	
 	class MusicLib extends React.Component {
 		constructor(p) {
 			super(p);
-			document.title = "[DEV]My Music Library"
+			document.title = "[DEV]My Music Library - John Cage Tribute";
 		}
 		
 		
@@ -105,53 +111,69 @@
 		}
 	}
 	
+	//********* Dashboard **********
+	
 	function AccPanel(props) {
+		var inline = {display:"inline"};
+		var headerStyle = {
+			display:"inline",
+			textDecoration:"underline",
+		}
 		return (
-			<div id="acc-panel">
-				<h1 style={{display:"inline",textDecoration:"underline"}}>Profile</h1>
-				<div class="acc-panel-elem">
-					<h4 style={{display:"inline"}}>Name: </h4>
-					<p style={{display:"inline"}}>{props.account.name}</p>
+			<div id="acc-panel" class="panel">
+				<div style={{textAlign:"center"}}>
+					<h1 style={headerStyle}>Profile</h1>
 				</div>
 				<div class="acc-panel-elem">
-					<h4 style={{display:"inline"}}>Phone: </h4>
-					<p style={{display:"inline"}}>{props.account.phone}</p>
+					<h4 style={inline}>Name: </h4>
+					<p style={inline}>{props.account.name}</p>
 				</div>
 				<div class="acc-panel-elem">
-					<h4 style={{display:"inline"}}>Email: </h4>
-					<p style={{display:"inline"}}>{props.account.email}</p>
+					<h4 style={inline}>Phone: </h4>
+					<p style={inline}>{props.account.phone}</p>
 				</div>
 				<div class="acc-panel-elem">
-					<h4 style={{display:"inline"}}>Organization: </h4>
-					<p style={{display:"inline"}}>{props.account.org}</p>
+					<h4 style={inline}>Email: </h4>
+					<p style={inline}>{props.account.email}</p>
+				</div>
+				<div class="acc-panel-elem">
+					<h4 style={inline}>Organization: </h4>
+					<p style={inline}>{props.account.org}</p>
 				</div>
 			</div>
 		);
 	}
 	
-	function ApptPanel(props) {
+	function AptPanel(props) {
+		
+		const aptList = [(<p>apt1</p>), (<p>apt2</p>)];
 		return (
-			
+			<div style={{display:"inline-block",float:"left"}} class="panel" id="apt-panel">
+				{aptList}
+			</div>
 		);
 	}
 	
 	class Dashboard extends React.Component {
 		constructor(p) {
 			super(p);
-			document.title = "[DEV]User Dashboard";
-			this.dummy = {
+			document.title = "[DEV]User Dashboard - John Cage Tribute"; 
+		}
+		
+		render() {
+			const dummy = {
 				name: "John Doe",
 				email: "johndoe@gmail.com",
 				phone: "123-456-7890",
 				org: "UCF"
 			};
-		}
-		
-		render() {
 			return(<div>
 				<Header text="Dashboard" />
-				<div style={{display:"inline-block",width:"70%",border:"2px solid red"}}>
-					<AccPanel account={this.dummy} />
+				<div style={{display:"inline-block", width:"70%",border:"2px solid red"}}>
+					<AccPanel account={dummy} />
+					<div>
+						<AptPanel />
+					</div>
 				</div>
 			</div>);
 		}

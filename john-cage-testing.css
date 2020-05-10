@@ -1,4 +1,4 @@
-.header {
+header {
 	width: 100%;
 	background-color: #54b5f2;
 	padding: 10px;
@@ -66,15 +66,23 @@ audio {
 	outline: none
 }
 
-#acc-panel {
+.panel {
 	margin: 10px;
-	width: 20%;
-	min-width: 300px;
 	border: 2px solid black;
 	border-radius: 5px;
 	padding: 10px;
-	text-align: left;
 	font-family: Calibri
+}
+
+#acc-panel {
+	width: 20%;
+	text-align: left;
+	min-width: 200px;
+	float: left
+}
+
+#apt-panel {
+	
 }
 
 .acc-panel-elem {
